@@ -1,0 +1,3056 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OKA Civic-Link</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    background: #075c3a;
+    color: white;
+    padding: 16px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+header span {
+    font-size: 14px;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 30px;
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-box {
+    width: 450px;
+    max-width: 90%;
+    margin: 100px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.login-box h1 {
+    color: #075c3a;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: #666;
+}
+
+.login-box h3 {
+    margin-top: 30px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    background: #075c3a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #064a2f;
+}
+
+.notice {
+    margin-top: 15px;
+    background: #eef6f1;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #555;
+}
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.welcome {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.welcome h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #666;
+}
+
+.categories {
+    max-width: 950px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.category-btn {
+    background: white;
+    border: none;
+    border-radius: 12px;
+    padding: 35px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    transition: 0.2s;
+    min-height: 150px;
+}
+
+.category-btn:hover {
+    transform: translateY(-3px);
+    background: #eaf5ef;
+}
+
+/* =========================================================
+   FEATURED HAVE YOUR VOICE HEARD
+========================================================= */
+
+.voice-btn {
+    grid-column: 1 / 3;
+
+    min-height: 245px;
+
+    background: linear-gradient(
+        135deg,
+        #075c3a,
+        #0b8052
+    );
+
+    color: white;
+
+    border: 3px solid #075c3a;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.voice-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #064a2f,
+        #075c3a
+    );
+
+    transform:
+        translateY(-5px)
+        scale(1.01);
+}
+
+.voice-icon {
+    font-size: 78px;
+    line-height: 1;
+
+    z-index: 2;
+
+    animation:
+        voicePulse 1.4s infinite ease-in-out;
+}
+
+.voice-title {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.voice-description {
+    max-width: 650px;
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: 0.95;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Animated voice waves */
+
+.voice-btn::before,
+.voice-btn::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border: 3px solid rgba(255,255,255,0.35);
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 42%;
+
+    transform: translate(-50%, -50%);
+
+    animation: voiceWave 2s infinite;
+
+    pointer-events: none;
+}
+
+.voice-btn::after {
+    animation-delay: 1s;
+}
+
+@keyframes voicePulse {
+
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: scale(1.12) rotate(-4deg);
+    }
+
+    50% {
+        transform: scale(1.18) rotate(4deg);
+    }
+
+    75% {
+        transform: scale(1.12) rotate(-3deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes voiceWave {
+
+    0% {
+        width: 80px;
+        height: 80px;
+        opacity: 0.8;
+    }
+
+    100% {
+        width: 370px;
+        height: 370px;
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    background: #333;
+}
+
+/* =========================================================
+   CIVIC LINKS
+========================================================= */
+
+.links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.link-card {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.link-card h3 {
+    color: #075c3a;
+    margin-top: 0;
+}
+
+.link-card p {
+    color: #666;
+    min-height: 40px;
+}
+
+.open-btn {
+    background: #075c3a;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.open-btn:hover {
+    background: #064a2f;
+}
+
+/* =========================================================
+   INTERNAL BROWSER
+========================================================= */
+
+.browser-page {
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+}
+
+.browser-page.active {
+    display: flex;
+}
+
+.browser-toolbar {
+    background: #222;
+    color: white;
+    padding: 9px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.browser-toolbar button {
+    border: none;
+    background: #444;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.browser-toolbar button:hover {
+    background: #666;
+}
+
+.address-bar {
+    flex: 1;
+    background: white;
+    color: #333;
+    padding: 9px 12px;
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.website-frame {
+    width: 100%;
+    flex: 1;
+    border: none;
+    background: white;
+}
+
+/* =========================================================
+   BROWSER ERROR
+========================================================= */
+
+.browser-error {
+    display: none;
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 52px;
+    bottom: 0;
+
+    background: #f4f6f8;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.browser-error-box {
+    background: white;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.browser-error-box h2 {
+    color: #075c3a;
+    margin-top: 0;
+}
+
+.browser-error-box p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.blocked-url {
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    word-break: break-all;
+    font-size: 13px;
+    margin: 15px 0;
+}
+
+.open-browser-btn {
+    background: #075c3a;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.return-btn {
+    background: #666;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 5px;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.browser-loading {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 52px;
+    bottom: 0;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+
+.loading-box {
+    text-align: center;
+    color: #075c3a;
+}
+
+/* =========================================================
+   ADMIN BUTTON
+========================================================= */
+
+.admin-btn {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+
+    background: #333;
+    color: white;
+
+    border: none;
+
+    padding: 10px 17px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+.admin-title {
+    margin-bottom: 25px;
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.stat p {
+    color: #666;
+    font-size: 13px;
+}
+
+.stat h2 {
+    color: #075c3a;
+    font-size: 30px;
+    margin: 5px;
+}
+
+/* =========================================================
+   ADMIN SECTIONS
+========================================================= */
+
+.admin-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.admin-section h3 {
+    color: #075c3a;
+    margin-top: 0;
+}
+
+/* =========================================================
+   LINK MANAGEMENT
+========================================================= */
+
+.management-toolbar {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.link-management-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 12px;
+    background: #fafafa;
+}
+
+.link-management-card h4 {
+    margin: 0 0 8px 0;
+    color: #075c3a;
+}
+
+.link-management-card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.link-url {
+    font-size: 12px;
+    color: #777;
+    word-break: break-all;
+}
+
+.action-buttons {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.edit-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #c62828;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.55);
+}
+
+.modal-content {
+    background: white;
+
+    width: 600px;
+    max-width: 90%;
+
+    margin: 60px auto;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 30px rgba(0,0,0,0.25);
+}
+
+.modal-content h2 {
+    color: #075c3a;
+    margin-top: 0;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.save-btn {
+    flex: 1;
+    background: #075c3a;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cancel-btn {
+    flex: 1;
+    background: #777;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 11px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 13px;
+}
+
+th {
+    background: #075c3a;
+    color: white;
+}
+
+/* =========================================================
+   RESTORE
+========================================================= */
+
+.restore-btn {
+    background: #8a5a00;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width: 800px) {
+
+    .categories,
+    .links {
+        grid-template-columns: 1fr;
+    }
+
+    .voice-btn {
+        grid-column: 1;
+        min-height: 220px;
+    }
+
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .management-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .voice-title {
+        font-size: 22px;
+    }
+
+    .voice-icon {
+        font-size: 65px;
+    }
+
+    .voice-description {
+        font-size: 14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="loginPage" class="page active">
+
+    <div class="login-box">
+
+        <h1>OKA Civic-Link</h1>
+
+        <p>
+            Your gateway to civic and public
+            digital services in Malawi.
+        </p>
+
+        <h3>Welcome</h3>
+
+        <p>
+            Please enter your name to continue.
+        </p>
+
+        <input
+            type="text"
+            id="userName"
+            placeholder="Enter your name"
+            autocomplete="off"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="login()"
+        >
+            CONTINUE
+        </button>
+
+        <div class="notice">
+
+            Your name is used to record your visits
+            and participation on this computer.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
+
+<div id="homePage" class="page">
+
+<header>
+
+    <h1>OKA Civic-Link</h1>
+
+    <span id="welcomeUser"></span>
+
+</header>
+
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h2>
+            Civic Digital Access Point
+        </h2>
+
+        <p>
+            Access important civic, government
+            and public information platforms in Malawi.
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+
+        <!-- FIRST AND FEATURED TAB -->
+
+        <button
+            class="category-btn voice-btn"
+            onclick="openCategory('Civic Participation')"
+        >
+
+            <div class="voice-icon">
+                🗣️
+            </div>
+
+            <div class="voice-title">
+                HAVE YOUR VOICE HEARD
+            </div>
+
+            <div class="voice-description">
+
+                Participate, give feedback,
+                engage with government
+                and make your voice count.
+
+            </div>
+
+        </button>
+
+
+        <!-- GOVERNMENT -->
+
+        <button
+            class="category-btn"
+            onclick="openCategory('Government Services')"
+        >
+
+            🏛️
+            <br><br>
+
+            GOVERNMENT SERVICES
+
+        </button>
+
+
+        <!-- REPORT -->
+
+        <button
+            class="category-btn"
+            onclick="openCategory('Accountability & Reporting')"
+        >
+
+            🚨
+            <br><br>
+
+            REPORT A PROBLEM
+
+        </button>
+
+
+        <!-- PUBLIC INFORMATION -->
+
+        <button
+            class="category-btn"
+            onclick="openCategory('Public Information')"
+        >
+
+            📊
+            <br><br>
+
+            ACCESS PUBLIC INFORMATION
+
+        </button>
+
+
+        <!-- YOUTH -->
+
+        <button
+            class="category-btn"
+            onclick="openCategory('Youth Platforms')"
+        >
+
+            👩🏾‍💻
+            <br><br>
+
+            YOUTH OPPORTUNITIES
+
+        </button>
+
+
+        <!-- RIGHTS -->
+
+        <button
+            class="category-btn"
+            onclick="openCategory('Civic Rights')"
+        >
+
+            📚
+            <br><br>
+
+            LEARN ABOUT CIVIC RIGHTS
+
+        </button>
+
+
+        <!-- EMERGENCY -->
+
+        <button
+            class="category-btn"
+            onclick="openCategory('Emergency & Essential Services')"
+        >
+
+            🚨
+            <br><br>
+
+            EMERGENCY & ESSENTIAL SERVICES
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<button
+    class="admin-btn"
+    onclick="adminLogin()"
+>
+    ADMIN
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     CATEGORY PAGE
+===================================================== -->
+
+<div id="categoryPage" class="page">
+
+<header>
+
+    <h1>OKA Civic-Link</h1>
+
+    <span id="categoryUser"></span>
+
+</header>
+
+
+<div class="container">
+
+    <button
+        class="back-btn"
+        onclick="showPage('homePage')"
+    >
+        ← BACK TO HOME
+    </button>
+
+
+    <h2 id="categoryTitle"></h2>
+
+
+    <div
+        id="linksContainer"
+        class="links"
+    ></div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     INTERNAL WEBSITE VIEWER
+===================================================== -->
+
+<div id="browserPage" class="browser-page">
+
+    <div class="browser-toolbar">
+
+        <button onclick="browserBack()">
+            ←
+        </button>
+
+        <button onclick="browserForward()">
+            →
+        </button>
+
+        <button onclick="reloadWebsite()">
+            ↻
+        </button>
+
+        <button onclick="closeWebsite()">
+            ✕ CLOSE
+        </button>
+
+        <div
+            id="addressBar"
+            class="address-bar"
+        ></div>
+
+    </div>
+
+
+    <div
+        id="browserLoading"
+        class="browser-loading"
+    >
+
+        <div class="loading-box">
+
+            <h3>
+                Loading civic service...
+            </h3>
+
+            <p>
+                Please wait.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <iframe
+        id="websiteFrame"
+        class="website-frame"
+        title="Civic Service"
+        allow="camera; microphone; geolocation"
+    ></iframe>
+
+
+    <div
+        id="browserError"
+        class="browser-error"
+    >
+
+        <div class="browser-error-box">
+
+            <h2>
+                This website cannot be displayed here
+            </h2>
+
+            <p>
+
+                This website has security settings
+                that prevent it from being displayed
+                inside OKA Civic-Link.
+
+            </p>
+
+            <p>
+                You can open it directly in your
+                normal browser.
+            </p>
+
+            <div
+                id="blockedURL"
+                class="blocked-url"
+            ></div>
+
+
+            <button
+                class="open-browser-btn"
+                onclick="openCurrentWebsiteInBrowser()"
+            >
+                🌐 OPEN IN BROWSER
+            </button>
+
+
+            <button
+                class="return-btn"
+                onclick="returnFromBrowserError()"
+            >
+                ← GO BACK
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN PAGE
+===================================================== -->
+
+<div id="adminPage" class="page">
+
+<header>
+
+    <h1>
+        OKA Civic-Link Admin
+    </h1>
+
+    <span>
+        Administration Dashboard
+    </span>
+
+</header>
+
+
+<div class="container">
+
+    <button
+        class="back-btn"
+        onclick="logoutAdmin()"
+    >
+        LOGOUT
+    </button>
+
+
+    <h2 class="admin-title">
+        Dashboard
+    </h2>
+
+
+    <div class="admin-stats">
+
+        <div class="stat">
+
+            <p>REGISTERED USERS</p>
+
+            <h2 id="totalUsers">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <p>TOTAL VISITS</p>
+
+            <h2 id="totalVisits">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <p>LINK CLICKS</p>
+
+            <h2 id="totalClicks">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <p>ACTIVITIES</p>
+
+            <h2 id="totalActivities">
+                0
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- LINK MANAGEMENT -->
+
+    <div class="admin-section">
+
+        <h3>
+            🔗 Civic Links Management
+        </h3>
+
+        <p>
+            The administrator can add, edit,
+            delete, search and manage all civic links.
+        </p>
+
+
+        <div class="management-toolbar">
+
+            <input
+                type="text"
+                id="linkSearch"
+                placeholder="🔍 Search civic links..."
+                oninput="displayManagedLinks()"
+            >
+
+
+            <select
+                id="linkCategoryFilter"
+                onchange="displayManagedLinks()"
+            >
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Government Services">
+                    Government Services
+                </option>
+
+                <option value="Civic Participation">
+                    Civic Participation
+                </option>
+
+                <option value="Accountability & Reporting">
+                    Accountability & Reporting
+                </option>
+
+                <option value="Public Information">
+                    Public Information
+                </option>
+
+                <option value="Youth Platforms">
+                    Youth Platforms
+                </option>
+
+                <option value="Civic Rights">
+                    Civic Rights
+                </option>
+
+                <option value="Emergency & Essential Services">
+                    Emergency & Essential Services
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="openAddLinkModal()"
+        >
+            ➕ ADD NEW CIVIC LINK
+        </button>
+
+
+        <br><br>
+
+
+        <div id="managedLinks"></div>
+
+
+        <button
+            class="restore-btn"
+            onclick="restoreDefaultLinks()"
+        >
+            🔄 RESTORE DEFAULT CIVIC LINKS
+        </button>
+
+    </div>
+
+
+    <!-- PARTICIPATION LOG -->
+
+    <div class="admin-section">
+
+        <h3>
+            📊 Participation Evidence Log
+        </h3>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>User</th>
+
+                        <th>Activity</th>
+
+                        <th>Category</th>
+
+                        <th>Service</th>
+
+                        <th>Date & Time</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="activityTable"
+                ></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ADD / EDIT LINK MODAL
+===================================================== -->
+
+<div
+    id="linkModal"
+    class="modal"
+>
+
+    <div class="modal-content">
+
+        <h2 id="modalTitle">
+            Add Civic Link
+        </h2>
+
+
+        <label>
+            Category
+        </label>
+
+        <select id="formCategory">
+
+            <option>
+                Government Services
+            </option>
+
+            <option>
+                Civic Participation
+            </option>
+
+            <option>
+                Accountability & Reporting
+            </option>
+
+            <option>
+                Public Information
+            </option>
+
+            <option>
+                Youth Platforms
+            </option>
+
+            <option>
+                Civic Rights
+            </option>
+
+            <option>
+                Emergency & Essential Services
+            </option>
+
+        </select>
+
+
+        <label>
+            Civic Platform Name
+        </label>
+
+        <input
+            type="text"
+            id="formName"
+            placeholder="Example: Parliament of Malawi"
+        >
+
+
+        <label>
+            Description
+        </label>
+
+        <textarea
+            id="formDescription"
+            placeholder="Briefly describe this service"
+        ></textarea>
+
+
+        <label>
+            Website URL
+        </label>
+
+        <input
+            type="url"
+            id="formURL"
+            placeholder="https://example.com"
+        >
+
+
+        <div class="modal-actions">
+
+            <button
+                class="save-btn"
+                onclick="saveLinkForm()"
+            >
+                SAVE
+            </button>
+
+
+            <button
+                class="cancel-btn"
+                onclick="closeLinkModal()"
+            >
+                CANCEL
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DEFAULT LINKS
+========================================================= */
+
+const DEFAULT_LINKS = [
+
+    {
+        category: "Government Services",
+        name: "Malawi Government Portal",
+        description:
+            "Official Malawi Government information portal.",
+        url:
+            "https://www.malawi.gov.mw/"
+    },
+
+    {
+        category: "Government Services",
+        name: "Bomalathu e-Services",
+        description:
+            "Access government digital services.",
+        url:
+            "https://www.bomalathu.gov.mw/"
+    },
+
+    {
+        category: "Government Services",
+        name: "Malawi e-Visa",
+        description:
+            "Official Malawi electronic visa portal.",
+        url:
+            "https://www.evisa.gov.mw/"
+    },
+
+    {
+        category: "Civic Participation",
+        name: "Parliament of Malawi",
+        description:
+            "Access Parliament information, bills and parliamentary resources.",
+        url:
+            "https://www.parliament.gov.mw/"
+    },
+
+    {
+        category: "Accountability & Reporting",
+        name: "Anti-Corruption Bureau",
+        description:
+            "Access information about corruption prevention and reporting.",
+        url:
+            "https://www.acbmw.org/"
+    },
+
+    {
+        category: "Accountability & Reporting",
+        name: "Office of the Ombudsman",
+        description:
+            "Access information about the Malawi Ombudsman.",
+        url:
+            "https://www.ombudsmanmalawi.org/"
+    },
+
+    {
+        category: "Public Information",
+        name: "Malawi Government Information",
+        description:
+            "Access official government information.",
+        url:
+            "https://www.malawi.gov.mw/"
+    },
+
+    {
+        category: "Youth Platforms",
+        name: "Malawi Government",
+        description:
+            "Access government information and opportunities.",
+        url:
+            "https://www.malawi.gov.mw/"
+    },
+
+    {
+        category: "Civic Rights",
+        name: "Parliament of Malawi",
+        description:
+            "Learn about laws, Parliament and democratic processes.",
+        url:
+            "https://www.parliament.gov.mw/"
+    },
+
+    {
+        category: "Emergency & Essential Services",
+        name: "Malawi Government",
+        description:
+            "Official government information and essential services.",
+        url:
+            "https://www.malawi.gov.mw/"
+    },
+
+    {
+        category: "Youth Platforms",
+        name: "Facebook",
+        description:
+            "Social media platform for accessing public and community information.",
+        url:
+            "https://web.facebook.com/"
+    }
+
+];
+
+
+/* =========================================================
+   APPLICATION VARIABLES
+========================================================= */
+
+let civicLinks =
+    JSON.parse(
+        localStorage.getItem("okaCivicLinks")
+    );
+
+if (
+    !civicLinks ||
+    !Array.isArray(civicLinks)
+) {
+
+    civicLinks =
+        JSON.parse(
+            JSON.stringify(DEFAULT_LINKS)
+        );
+
+    saveLinks();
+}
+
+
+let currentUser = "";
+
+let editingLinkIndex = -1;
+
+let currentWebsite = "";
+
+let currentWebsiteTitle = "";
+
+let websiteHistory = [];
+
+let historyPosition = -1;
+
+let iframeTimeout = null;
+
+
+/* =========================================================
+   SAVE LINKS
+========================================================= */
+
+function saveLinks() {
+
+    localStorage.setItem(
+        "okaCivicLinks",
+        JSON.stringify(civicLinks)
+    );
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function login() {
+
+    const name =
+        document
+        .getElementById("userName")
+        .value
+        .trim();
+
+
+    if (!name) {
+
+        alert(
+            "Please enter your name."
+        );
+
+        return;
+    }
+
+
+    currentUser = name;
+
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("okaUsers")
+        ) || {};
+
+
+    if (!users[name]) {
+
+        users[name] = {
+
+            visits: 0,
+
+            firstVisit:
+                new Date().toLocaleString(),
+
+            lastVisit: ""
+
+        };
+
+    }
+
+
+    users[name].visits++;
+
+    users[name].lastVisit =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "okaUsers",
+        JSON.stringify(users)
+    );
+
+
+    const visitNumber =
+        users[name].visits;
+
+
+    recordActivity(
+        "General",
+        "Login",
+        ""
+    );
+
+
+    alert(
+
+        "Welcome " +
+        name +
+        "!\n\n" +
+        "This is your visit number " +
+        visitNumber +
+        " to OKA Civic-Link."
+
+    );
+
+
+    document
+    .getElementById("welcomeUser")
+    .innerText =
+        "Welcome, " +
+        name +
+        " | Visit #" +
+        visitNumber;
+
+
+    showPage("homePage");
+
+}
+
+
+/* =========================================================
+   PAGE CONTROL
+========================================================= */
+
+function showPage(pageID) {
+
+    document
+    .querySelectorAll(".page")
+    .forEach(
+        page => {
+            page.classList.remove("active");
+        }
+    );
+
+
+    document
+    .getElementById(pageID)
+    .classList.add("active");
+
+}
+
+
+/* =========================================================
+   OPEN CATEGORY
+========================================================= */
+
+function openCategory(category) {
+
+    recordActivity(
+        category,
+        "Opened Category",
+        ""
+    );
+
+
+    document
+    .getElementById("categoryTitle")
+    .innerText =
+        category;
+
+
+    document
+    .getElementById("categoryUser")
+    .innerText =
+        "User: " +
+        currentUser;
+
+
+    const container =
+        document
+        .getElementById("linksContainer");
+
+
+    container.innerHTML = "";
+
+
+    const links =
+        civicLinks.filter(
+            link =>
+                link.category === category
+        );
+
+
+    if (links.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="link-card">
+
+                <h3>
+                    No links available
+                </h3>
+
+                <p>
+                    The administrator has not
+                    added any links to this category yet.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    links.forEach(
+        link => {
+
+            const originalIndex =
+                civicLinks.indexOf(link);
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "link-card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    ${escapeHTML(link.name)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(link.description)}
+                </p>
+
+                <button
+                    class="open-btn"
+                    onclick="openWebsite(${originalIndex})"
+                >
+                    OPEN SERVICE
+                </button>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+
+    showPage("categoryPage");
+
+}
+
+
+/* =========================================================
+   OPEN WEBSITE INSIDE APP
+========================================================= */
+
+function openWebsite(index) {
+
+    const link =
+        civicLinks[index];
+
+
+    if (!link) {
+        return;
+    }
+
+
+    currentWebsite =
+        link.url;
+
+    currentWebsiteTitle =
+        link.name;
+
+
+    recordActivity(
+        link.category,
+        "Opened Civic Link",
+        link.name
+    );
+
+
+    websiteHistory =
+        websiteHistory.slice(
+            0,
+            historyPosition + 1
+        );
+
+
+    websiteHistory.push(
+        link.url
+    );
+
+
+    historyPosition =
+        websiteHistory.length - 1;
+
+
+    document
+    .getElementById("addressBar")
+    .innerText =
+        link.url;
+
+
+    document
+    .getElementById("browserError")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("browserLoading")
+    .style.display =
+        "flex";
+
+
+    const frame =
+        document
+        .getElementById("websiteFrame");
+
+
+    frame.src =
+        "about:blank";
+
+
+    setTimeout(
+        function() {
+
+            frame.src =
+                link.url;
+
+        },
+        100
+    );
+
+
+    clearTimeout(iframeTimeout);
+
+
+    iframeTimeout =
+        setTimeout(
+            function() {
+                checkIframe();
+            },
+            7000
+        );
+
+
+    showPage("browserPage");
+
+}
+
+
+/* =========================================================
+   IFRAME LOADED
+========================================================= */
+
+document
+.getElementById("websiteFrame")
+.addEventListener(
+    "load",
+    function() {
+
+        document
+        .getElementById("browserLoading")
+        .style.display =
+            "none";
+
+    }
+);
+
+
+/* =========================================================
+   IFRAME FALLBACK
+========================================================= */
+
+function checkIframe() {
+
+    document
+    .getElementById("browserLoading")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("blockedURL")
+    .innerText =
+        currentWebsite;
+
+
+    document
+    .getElementById("browserError")
+    .style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   OPEN IN NORMAL BROWSER
+========================================================= */
+
+function openCurrentWebsiteInBrowser() {
+
+    if (!currentWebsite) {
+        return;
+    }
+
+
+    window.open(
+        currentWebsite,
+        "_blank"
+    );
+
+
+    recordActivity(
+        "External Browser",
+        "Opened Link in Browser",
+        currentWebsiteTitle
+    );
+
+}
+
+
+/* =========================================================
+   RETURN FROM ERROR
+========================================================= */
+
+function returnFromBrowserError() {
+
+    document
+    .getElementById("browserError")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("browserLoading")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("websiteFrame")
+    .src =
+        "about:blank";
+
+
+    showPage("categoryPage");
+
+}
+
+
+/* =========================================================
+   BROWSER BACK
+========================================================= */
+
+function browserBack() {
+
+    if (historyPosition > 0) {
+
+        historyPosition--;
+
+
+        const url =
+            websiteHistory[historyPosition];
+
+
+        currentWebsite =
+            url;
+
+
+        document
+        .getElementById("browserError")
+        .style.display =
+            "none";
+
+
+        document
+        .getElementById("browserLoading")
+        .style.display =
+            "flex";
+
+
+        document
+        .getElementById("addressBar")
+        .innerText =
+            url;
+
+
+        document
+        .getElementById("websiteFrame")
+        .src =
+            url;
+
+
+        clearTimeout(iframeTimeout);
+
+
+        iframeTimeout =
+            setTimeout(
+                checkIframe,
+                7000
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   BROWSER FORWARD
+========================================================= */
+
+function browserForward() {
+
+    if (
+        historyPosition <
+        websiteHistory.length - 1
+    ) {
+
+        historyPosition++;
+
+
+        const url =
+            websiteHistory[historyPosition];
+
+
+        currentWebsite =
+            url;
+
+
+        document
+        .getElementById("browserError")
+        .style.display =
+            "none";
+
+
+        document
+        .getElementById("browserLoading")
+        .style.display =
+            "flex";
+
+
+        document
+        .getElementById("addressBar")
+        .innerText =
+            url;
+
+
+        document
+        .getElementById("websiteFrame")
+        .src =
+            url;
+
+
+        clearTimeout(iframeTimeout);
+
+
+        iframeTimeout =
+            setTimeout(
+                checkIframe,
+                7000
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   RELOAD
+========================================================= */
+
+function reloadWebsite() {
+
+    if (!currentWebsite) {
+        return;
+    }
+
+
+    document
+    .getElementById("browserError")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("browserLoading")
+    .style.display =
+        "flex";
+
+
+    document
+    .getElementById("websiteFrame")
+    .src =
+        currentWebsite;
+
+
+    clearTimeout(iframeTimeout);
+
+
+    iframeTimeout =
+        setTimeout(
+            checkIframe,
+            7000
+        );
+
+}
+
+
+/* =========================================================
+   CLOSE WEBSITE
+========================================================= */
+
+function closeWebsite() {
+
+    clearTimeout(iframeTimeout);
+
+
+    document
+    .getElementById("websiteFrame")
+    .src =
+        "about:blank";
+
+
+    document
+    .getElementById("browserError")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("browserLoading")
+    .style.display =
+        "none";
+
+
+    showPage("categoryPage");
+
+}
+
+
+/* =========================================================
+   RECORD ACTIVITY
+========================================================= */
+
+function recordActivity(
+    category,
+    action,
+    service
+) {
+
+    let activities =
+        JSON.parse(
+            localStorage.getItem("okaActivities")
+        ) || [];
+
+
+    activities.push({
+
+        user:
+            currentUser,
+
+        category:
+            category,
+
+        action:
+            action,
+
+        service:
+            service,
+
+        time:
+            new Date().toLocaleString()
+
+    });
+
+
+    localStorage.setItem(
+        "okaActivities",
+        JSON.stringify(activities)
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+function adminLogin() {
+
+    const password =
+        prompt(
+            "Enter administrator password:"
+        );
+
+
+    if (
+        password === "OKA2026"
+    ) {
+
+        loadAdminDashboard();
+
+        showPage("adminPage");
+
+    }
+
+    else {
+
+        alert(
+            "Incorrect administrator password."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ADMIN LOGOUT
+========================================================= */
+
+function logoutAdmin() {
+
+    showPage("loginPage");
+
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+function loadAdminDashboard() {
+
+    const users =
+        JSON.parse(
+            localStorage.getItem("okaUsers")
+        ) || {};
+
+
+    const activities =
+        JSON.parse(
+            localStorage.getItem("okaActivities")
+        ) || [];
+
+
+    const totalUsers =
+        Object.keys(users).length;
+
+
+    let totalVisits = 0;
+
+
+    Object.values(users)
+    .forEach(
+        user => {
+            totalVisits += user.visits;
+        }
+    );
+
+
+    const totalClicks =
+        activities.filter(
+            activity =>
+                activity.action ===
+                "Opened Civic Link"
+        ).length;
+
+
+    document
+    .getElementById("totalUsers")
+    .innerText =
+        totalUsers;
+
+
+    document
+    .getElementById("totalVisits")
+    .innerText =
+        totalVisits;
+
+
+    document
+    .getElementById("totalClicks")
+    .innerText =
+        totalClicks;
+
+
+    document
+    .getElementById("totalActivities")
+    .innerText =
+        activities.length;
+
+
+    displayManagedLinks();
+
+    displayActivityLog();
+
+}
+
+
+/* =========================================================
+   DISPLAY MANAGED LINKS
+========================================================= */
+
+function displayManagedLinks() {
+
+    const container =
+        document
+        .getElementById("managedLinks");
+
+
+    const search =
+        document
+        .getElementById("linkSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const category =
+        document
+        .getElementById("linkCategoryFilter")
+        .value;
+
+
+    container.innerHTML = "";
+
+
+    const filteredLinks =
+        civicLinks.filter(
+            link => {
+
+                const matchesSearch =
+
+                    link.name
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    link.description
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    link.url
+                    .toLowerCase()
+                    .includes(search);
+
+
+                const matchesCategory =
+
+                    category === "all"
+
+                    ||
+
+                    link.category === category;
+
+
+                return (
+                    matchesSearch &&
+                    matchesCategory
+                );
+
+            }
+        );
+
+
+    if (
+        filteredLinks.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <p>
+                No civic links found.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    filteredLinks.forEach(
+        link => {
+
+            const index =
+                civicLinks.indexOf(link);
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "link-management-card";
+
+
+            card.innerHTML = `
+
+                <h4>
+                    ${escapeHTML(link.name)}
+                </h4>
+
+                <p>
+                    <strong>
+                        Category:
+                    </strong>
+
+                    ${escapeHTML(link.category)}
+                </p>
+
+                <p>
+                    ${escapeHTML(link.description)}
+                </p>
+
+                <p class="link-url">
+                    ${escapeHTML(link.url)}
+                </p>
+
+
+                <div class="action-buttons">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editLink(${index})"
+                    >
+                        ✏️ EDIT
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteLink(${index})"
+                    >
+                        🗑️ DELETE
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ADD LINK
+========================================================= */
+
+function openAddLinkModal() {
+
+    editingLinkIndex = -1;
+
+
+    document
+    .getElementById("modalTitle")
+    .innerText =
+        "Add New Civic Link";
+
+
+    document
+    .getElementById("formCategory")
+    .value =
+        "Government Services";
+
+
+    document
+    .getElementById("formName")
+    .value = "";
+
+
+    document
+    .getElementById("formDescription")
+    .value = "";
+
+
+    document
+    .getElementById("formURL")
+    .value = "";
+
+
+    document
+    .getElementById("linkModal")
+    .style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   EDIT LINK
+========================================================= */
+
+function editLink(index) {
+
+    const link =
+        civicLinks[index];
+
+
+    if (!link) {
+        return;
+    }
+
+
+    editingLinkIndex =
+        index;
+
+
+    document
+    .getElementById("modalTitle")
+    .innerText =
+        "Edit Civic Link";
+
+
+    document
+    .getElementById("formCategory")
+    .value =
+        link.category;
+
+
+    document
+    .getElementById("formName")
+    .value =
+        link.name;
+
+
+    document
+    .getElementById("formDescription")
+    .value =
+        link.description;
+
+
+    document
+    .getElementById("formURL")
+    .value =
+        link.url;
+
+
+    document
+    .getElementById("linkModal")
+    .style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   SAVE LINK
+========================================================= */
+
+function saveLinkForm() {
+
+    const category =
+        document
+        .getElementById("formCategory")
+        .value;
+
+
+    const name =
+        document
+        .getElementById("formName")
+        .value
+        .trim();
+
+
+    const description =
+        document
+        .getElementById("formDescription")
+        .value
+        .trim();
+
+
+    const url =
+        document
+        .getElementById("formURL")
+        .value
+        .trim();
+
+
+    if (
+        !category ||
+        !name ||
+        !description ||
+        !url
+    ) {
+
+        alert(
+            "Please complete all fields."
+        );
+
+        return;
+    }
+
+
+    if (
+        !isValidURL(url)
+    ) {
+
+        alert(
+            "Please enter a valid URL beginning with https:// or http://"
+        );
+
+        return;
+    }
+
+
+    const newLink = {
+
+        category:
+            category,
+
+        name:
+            name,
+
+        description:
+            description,
+
+        url:
+            url
+
+    };
+
+
+    const wasEditing =
+        editingLinkIndex !== -1;
+
+
+    if (!wasEditing) {
+
+        civicLinks.push(newLink);
+
+    }
+
+    else {
+
+        civicLinks[editingLinkIndex] =
+            newLink;
+
+    }
+
+
+    saveLinks();
+
+    closeLinkModal();
+
+    displayManagedLinks();
+
+
+    alert(
+
+        wasEditing
+
+        ?
+
+        "Civic link updated successfully."
+
+        :
+
+        "Civic link added successfully."
+
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeLinkModal() {
+
+    document
+    .getElementById("linkModal")
+    .style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   DELETE LINK
+========================================================= */
+
+function deleteLink(index) {
+
+    const link =
+        civicLinks[index];
+
+
+    if (!link) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+
+            "Are you sure you want to delete:\n\n" +
+            link.name +
+            "?"
+
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    civicLinks.splice(
+        index,
+        1
+    );
+
+
+    saveLinks();
+
+    displayManagedLinks();
+
+
+    alert(
+        "Civic link deleted successfully."
+    );
+
+}
+
+
+/* =========================================================
+   RESTORE DEFAULT LINKS
+========================================================= */
+
+function restoreDefaultLinks() {
+
+    const confirmed =
+        confirm(
+
+            "This will replace all current civic links with the original default links.\n\n" +
+
+            "Any links added or edited by the administrator will be removed.\n\n" +
+
+            "Continue?"
+
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    civicLinks =
+        JSON.parse(
+            JSON.stringify(DEFAULT_LINKS)
+        );
+
+
+    saveLinks();
+
+    displayManagedLinks();
+
+
+    alert(
+        "Default civic links have been restored."
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVITY LOG
+========================================================= */
+
+function displayActivityLog() {
+
+    const activities =
+        JSON.parse(
+            localStorage.getItem("okaActivities")
+        ) || [];
+
+
+    const table =
+        document
+        .getElementById("activityTable");
+
+
+    table.innerHTML = "";
+
+
+    activities
+    .slice()
+    .reverse()
+    .forEach(
+        activity => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(activity.user)}
+                </td>
+
+                <td>
+                    ${escapeHTML(activity.action)}
+                </td>
+
+                <td>
+                    ${escapeHTML(activity.category)}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        activity.service || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(activity.time)}
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VALIDATE URL
+========================================================= */
+
+function isValidURL(url) {
+
+    try {
+
+        const parsed =
+            new URL(url);
+
+
+        return (
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
+        );
+
+    }
+
+    catch {
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================================= */
+
+window.onclick =
+    function(event) {
+
+        const modal =
+            document.getElementById("linkModal");
+
+
+        if (
+            event.target === modal
+        ) {
+
+            closeLinkModal();
+
+        }
+
+    };
+
+</script>
+
+</body>
+</html>
+```
